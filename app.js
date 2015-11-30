@@ -3,7 +3,7 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server, { path: '/r-node/socket.io' });
 
-app.use("/r-node", express.static('public_html'));
+app.use("/r-node", express.static(__dirname + '/public_html'));
 
 io.on('connection', function(socket){
   console.log('a user connected');

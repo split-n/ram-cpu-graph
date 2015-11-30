@@ -1,5 +1,4 @@
-var ioUrl = location.host + ":" + location.port + "/r-node";
-var socket = io(ioUrl, { path: '/r-node/socket.io' });
+var socket = io({path: '/r-node/socket.io' });
 socket.on("connected", function(msg) {
   console.log(msg);
 });

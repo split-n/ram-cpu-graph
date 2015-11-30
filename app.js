@@ -1,16 +1,17 @@
 var express = require('express');
 var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var server = require('http').Server(app);
+var io = require('socket.io')(server, { path: '/r-node/socket.io' });
 
 app.use(express.static('public_html'));
 
 io.on('connection', function(socket){
   console.log('a user connected');
+  console.log(socket);
 });
 
 
-http.listen(5500, function(){
+server.listen(5500, function(){
   console.log('listening on *:5500');
 });
 

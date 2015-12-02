@@ -28,9 +28,15 @@ server.listen(5500, '0.0.0.0', function(){
 
 setInterval(function() {
   if(connects) {
-    var meminfo = {total: os.totalmem(), free: os.freemem()};
-    var msg = JSON.stringify(meminfo);
-    io.emit("meminfo", msg);
-    console.log("emit mem: " + msg);
+    var info = {
+      memory: {
+        total: os.totalmem(),
+        free: os.freemem()
+      },
+      time: Math.floor(new Date() / 1000)
+    };
+    var msg = JSON.stringify(info);
+    io.emit("info", msg);
+    console.log("emit info: " + msg);
   }
 }, 1000);

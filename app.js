@@ -5,10 +5,20 @@ var io = require('socket.io')(server, { path: '/r-node/socket.io' });
 
 app.use("/r-node", express.static(__dirname + '/public_html'));
 
+var connects = 0;
+
 io.on('connection', function(socket){
   console.log('a user connected');
-  console.log(socket);
+  connects++;
+  console.log(connects + " users connected");
+
+  socket.on('disconnect', function(){
+    console.log('a user disconnected');
+    connects--;
+    console.log(connects + " users connected");
+  });
 });
+
 
 
 server.listen(5500, '0.0.0.0', function(){
@@ -16,7 +26,9 @@ server.listen(5500, '0.0.0.0', function(){
 });
 
 setInterval(function() {
-  var msg = (new Date()).toString();
-  io.emit("message", msg);
-  console.log("emit message: " + msg);
+  if(connects) {
+    var msg = (new Date()).toString();
+    io.emit("message", msg);
+    console.log("emit message: " + msg);
+  }
 }, 2000);

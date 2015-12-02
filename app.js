@@ -1,3 +1,4 @@
+var os = require('os');
 var express = require('express');
 var app = express();
 var server = require('http').Server(app);
@@ -27,8 +28,9 @@ server.listen(5500, '0.0.0.0', function(){
 
 setInterval(function() {
   if(connects) {
-    var msg = (new Date()).toString();
-    io.emit("message", msg);
-    console.log("emit message: " + msg);
+    var meminfo = {total: os.totalmem(), free: os.freemem()};
+    var msg = JSON.stringify(meminfo);
+    io.emit("meminfo", msg);
+    console.log("emit mem: " + msg);
   }
-}, 2000);
+}, 1000);

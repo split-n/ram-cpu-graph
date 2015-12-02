@@ -33,10 +33,10 @@ setInterval(function() {
         total: os.totalmem(),
         free: os.freemem()
       },
-      time: Math.floor(new Date() / 1000)
+      time: new Date()
     };
     var msg = JSON.stringify(info);
     io.emit("info", msg);
     console.log("emit info: " + msg);
   }
-}, 1000);
+}, 200);

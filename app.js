@@ -1,9 +1,10 @@
 var os = require('os');
 var express = require('express');
+var procfs = require('procfs-stats');
+
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server, { path: '/r-node/socket.io' });
-var procfs = require('procfs-stats');
 
 var OUT_EMIT_LOG = process.argv.indexOf("-d") != -1
 

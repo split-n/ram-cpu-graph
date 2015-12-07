@@ -1,7 +1,12 @@
 {
   "name": "ram-cpu-graph",
   "version": "0.0.1",
-  "description": "my first socket.io app",
+  "description": "ram, cpu usage graph",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/split-n/ram-cpu-graph.git"
+  },
+  "license": "MIT",
   "dependencies": {
     "express": "^4.13.3",
     "procfs-stats": "0.0.4",

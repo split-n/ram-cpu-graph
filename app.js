@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server, { path: '/r-node/socket.io' });
+var child_process = require('child_process');
 
 var OUT_EMIT_LOG = process.argv.indexOf("-d") != -1
 
@@ -30,11 +31,16 @@ server.listen(5500, '0.0.0.0', function(){
 
 setInterval(function() {
   if(connects) {
+    // sorry but sync
+    var vmstat = child_process.execSync("vmstat").toString().split("\n")[2];
+    var cpuIdle = parseInt(vmstat.split(/\s+/)[15]);
+
     var info = {
       memory: {
         total: os.totalmem(),
         free: os.freemem()
       },
+      cpuIdle: cpuIdle,
       time: (new Date()).getTime()
     };
     var msg = JSON.stringify(info);

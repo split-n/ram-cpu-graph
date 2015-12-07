@@ -4,6 +4,8 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server, { path: '/r-node/socket.io' });
 
+var OUT_EMIT_LOG = process.argv.indexOf("-d") != -1
+
 app.use("/r-node", express.static(__dirname + '/public_html'));
 
 var connects = 0;
@@ -37,6 +39,8 @@ setInterval(function() {
     };
     var msg = JSON.stringify(info);
     io.emit("info", msg);
-    console.log("emit info: " + msg);
+    if(OUT_EMIT_LOG) {
+      console.log("emit info: " + msg);
+    }
   }
 }, 200);

@@ -9,11 +9,39 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/epoch/0.8.4/js/epoch.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/epoch/0.8.4/css/epoch.min.css">
 <script src="index.js"></script>
+<style>
+  td {
+    text-align: right;
+  }
+
+  tr {
+    text-align: left;
+  }
+</style>
   </head>
   <body>
-    <div id="area" class="epoch category10" style="height:200px;"></div>
-    <button id="disconnect-btn" class="btn">disconnect</button>
-    <ul>
-    </ul>
+    <div>
+      <h1>RAM usage</h1>
+      <div>
+        <table>
+          <tr>
+            <th>MemTotal</th>
+            <td><span id="mem_total"></span></td>
+            <td>MB</td>
+          </tr>
+          <tr>
+            <th>MemUsed</th>
+            <td><span id="mem_used"></span></td>
+            <td>MB</td>
+          </tr>
+          <tr>
+            <th>MemFree</th>
+            <td><span id="mem_free"></span></td>
+            <td>MB</td>
+          </tr>
+        </table>
+      </div>
+      <div id="area" class="epoch category10" style="height:200px;"></div>
+    </div>
   </body>
 </html>

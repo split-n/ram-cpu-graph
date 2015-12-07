@@ -41,6 +41,7 @@ $(document).ready(function() {
 
     var cpuUsed = 100 - info.cpuIdle;
     cpuChartInstance.push([{time:time, y:cpuUsed}]);
+    $("#cpu_used").text(cpuUsed);
     console.log(info);
   });
 

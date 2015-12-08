@@ -12,6 +12,9 @@ function initMemChart(range_max) {
       tickFormats: {
         right: function(v) {
           return Math.floor(v/1024/1024) + " MB  ";
+        },
+        bottom: function(v) {
+          return (new Date(v)).toLocaleTimeString();
         }
       }
   });
@@ -22,7 +25,7 @@ function applyInfoJson(infoJson) {
     var totalMB = Math.round(info.memory.total/1048576);
     var freeMB = Math.round(info.memory.free/1048576);
     var usedMB = totalMB-freeMB;
-    var time = Math.floor(info.time/1000)
+    var time = info.time
     if (!memChartInstance) { // only first
       initMemChart(info.memory.total);
     }
@@ -50,6 +53,9 @@ $(document).ready(function() {
       tickFormats: {
         right: function(v) {
           return v + " %";
+        },
+        bottom: function(v) {
+          return (new Date(v)).toLocaleTimeString();
         }
       }
   });

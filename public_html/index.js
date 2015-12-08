@@ -7,7 +7,13 @@ function initMemChart(range_max) {
       data: [{label: "freemem", values: []}],
       axes: ['right', 'bottom'],
       range: [0, range_max],
-      queueSize: 1
+      queueSize: 1,
+      margins: { right: 70 },
+      tickFormats: {
+        right: function(v) {
+          return Math.floor(v/1024/1024) + " MB  ";
+        }
+      }
   });
 }
 
@@ -39,7 +45,13 @@ $(document).ready(function() {
       data: [{label: "usedCpu", values: []}],
       axes: ['right', 'bottom'],
       range: [0, 100],
-      queueSize: 1
+      queueSize: 1,
+      margins: { right: 70 },
+      tickFormats: {
+        right: function(v) {
+          return v + " %";
+        }
+      }
   });
 
   var socket = io({path: '/r-node/socket.io', 'sync disconnect on unload': true });
